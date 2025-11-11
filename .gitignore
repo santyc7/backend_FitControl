@@ -1,0 +1,19 @@
+# fitcontrol-backend/.gitignore
+node_modules/
+dist/
+build/
+*.log
+
+.env
+.env.*
+!.env.example
+firebase-debug.log
+serviceAccount*.json
+firebase-key.json
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
