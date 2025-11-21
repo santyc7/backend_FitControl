@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { db } from "./config/firebase.js"; // sigue en JS, está bien importar .js desde TS
+import { db } from "./config/firebase"; // sigue en JS, está bien importar .js desde TS
 import nutritionRoutes from "./routes/nutrition"; // << SIN extensión, TS lo resuelve
 
 const app = express();
