@@ -10,7 +10,7 @@ if (process.env.FIREBASE_KEY) {
 } else {
   // 🖥️ MODO LOCAL: Cargar archivo firebase-key.json
   console.log("🖥️ Usando firebase-key.json local");
-  serviceAccount = await import("./firebase-key.json", { assert: { type: "json" } });
+  //serviceAccount = await import("./firebase-key.json", { assert: { type: "json" } });
   serviceAccount = serviceAccount.default;
 }
 
