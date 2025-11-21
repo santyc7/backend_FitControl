@@ -1,19 +1,26 @@
 # fitcontrol-backend/.gitignore
+
+# Node & builds
 node_modules/
 dist/
 build/
 *.log
 
+# Env files
 .env
 .env.*
 !.env.example
+
+# Firebase logs & keys
 firebase-debug.log
 serviceAccount*.json
-firebase-key.json
+src/config/firebase-key.json
 
+# IDE & OS Files
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
 .idea/
 .DS_Store
 Thumbs.db
+
