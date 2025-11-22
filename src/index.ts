@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { db } from "./config/firebase.js";
-import nutritionRoutes from "./routes/nutrition";
+import nutritionRoutes from "./routes/nutrition.js";
 
 const app = express();
 
