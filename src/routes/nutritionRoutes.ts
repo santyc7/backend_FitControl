@@ -1,7 +1,7 @@
 // src/routes/nutrition.ts
 import { Router } from 'express';
 import { getFirestore } from 'firebase-admin/firestore';
-import { buildPlan, Goal } from '../services/nutrition';
+import { buildPlan, Goal } from '../services/nutritionService.js';
 
 const router = Router();
 
