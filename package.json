@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon --watch src --ext ts,tsx --exec tsx src/index.ts",
     "start": "node dist/index.js",
-    "build": "tsc && cp src/config/firebase-key.json dist/config/firebase-key.json"
+    "build": "tsc"
 
   },
   "keywords": [],
