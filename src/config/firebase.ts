@@ -7,9 +7,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /* ---------------------------------------------------------
-   🔥 1. MODO RENDER (variables de entorno)  
+   🔥 1. MODO PRODUCCIÓN (Render usa ENV)
 --------------------------------------------------------- */
 if (process.env.GOOGLE_PRIVATE_KEY) {
+  console.log("🔥 Firebase inicializado con variables de entorno");
+
   admin.initializeApp({
     credential: admin.credential.cert({
       projectId: process.env.GOOGLE_PROJECT_ID,
@@ -18,13 +20,10 @@ if (process.env.GOOGLE_PRIVATE_KEY) {
     }),
   });
 
-  console.log("🔥 Firebase inicializado mediante variables de entorno.");
-}
-
-/* ---------------------------------------------------------
-   🖥️ 2. MODO LOCAL (firebase-key.json)
---------------------------------------------------------- 
-else {
+} else {
+  /* ---------------------------------------------------------
+     🖥️ 2. MODO LOCAL (usa firebase-key.json)
+  --------------------------------------------------------- */
   console.log("📁 Usando firebase-key.json (modo local)");
 
   const keyPath = path.join(__dirname, "firebase-key.json");
@@ -39,6 +38,6 @@ else {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
   });
-}*/
+}
 
 export const db = admin.firestore();
