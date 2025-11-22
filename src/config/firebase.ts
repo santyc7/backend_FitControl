@@ -23,7 +23,7 @@ if (process.env.GOOGLE_PRIVATE_KEY) {
 
 /* ---------------------------------------------------------
    🖥️ 2. MODO LOCAL (firebase-key.json)
---------------------------------------------------------- */
+--------------------------------------------------------- 
 else {
   console.log("📁 Usando firebase-key.json (modo local)");
 
@@ -39,6 +39,6 @@ else {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
   });
-}
+}*/
 
 export const db = admin.firestore();
