@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "description": "Backend del proyecto FitControl",
   "main": "index.js",
-   "type": "module",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --watch src --ext ts,tsx --exec tsx src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js"
   },
-
   "keywords": [],
   "author": "Santiago Chacon",
   "license": "ISC",

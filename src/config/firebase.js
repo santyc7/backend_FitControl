@@ -1,27 +1,29 @@
 import admin from "firebase-admin";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
 
-// 👇 Esto asegura que funcione bien incluso si ejecutas desde otra carpeta
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Si existe GOOGLE_PRIVATE_KEY (Render), usar variables de entorno
+if (process.env.GOOGLE_PRIVATE_KEY) {
+  admin.initializeApp({
+    credential: admin.credential.cert({
+      projectId: process.env.GOOGLE_PROJECT_ID,
+      clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
+      // OJO: reemplazo obligatorio porque las keys vienen con \n escapados en Render
+      privateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    })
+  });
 
-const keyPath = path.join(__dirname, "firebase-key.json");
+  console.log("🔥 Firebase inicializado mediante variables de entorno.");
+} 
+// Caso local → usar firebase-key.json
+else {
+  console.log("📁 Usando firebase-key.json (modo local)");
 
-// Verificación por si el archivo no existe
-if (!fs.existsSync(keyPath)) {
-  console.error("❌ No se encontró el archivo firebase-key.json en /config");
-  process.exit(1);
+  const serviceAccount = await import("./firebase-key.json", {
+    assert: { type: "json" }
+  }).then(m => m.default);
+
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+  });
 }
 
-const serviceAccount = JSON.parse(fs.readFileSync(keyPath, "utf8"));
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
-
 export const db = admin.firestore();
-
-// 👇 Muestra en consola el ID del proyecto conectado
-console.log(`✅ Firebase conectado al proyecto: ${serviceAccount.project_id}`);
